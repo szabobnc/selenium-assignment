@@ -1,8 +1,0 @@
-run_selenium_tests:
-  stage: test
-  image: gradle:8.0.2
-  services:
-    - name: selenium/standalone-chrome:latest
-      alias: selenium
-  script:
-    - gradle test
