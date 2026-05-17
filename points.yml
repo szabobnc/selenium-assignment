@@ -104,7 +104,7 @@ basic:
     description: "Project has at least 6 Java classes (cumulative with above)"
 
   at_least_8_classes:        # 3 pts | once
-    done: false
+    done: true
     description: "Project has at least 8 Java classes (cumulative with above)"
 
   explicit_wait:             # 3 pts | once
