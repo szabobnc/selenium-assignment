@@ -5,6 +5,7 @@
         <classes>
             <class name="com.stockanalysis.tests.AuthTests" />
             <class name="com.stockanalysis.tests.NavigationTests" />
+            <class name="com.stockanalysis.tests.CookieTests" />
         </classes>
     </test>
     <test name="FirefoxTests">
@@ -12,6 +13,7 @@
         <classes>
             <class name="com.stockanalysis.tests.AuthTests" />
             <class name="com.stockanalysis.tests.NavigationTests" />
+            <class name="com.stockanalysis.tests.CookieTests" />
         </classes>
     </test>
 </suite>
