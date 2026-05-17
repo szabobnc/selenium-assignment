@@ -3,6 +3,7 @@
     <test name="AutomationTests">
         <classes>
             <class name="com.stockanalysis.tests.AuthTests" />
+            <class name="com.stockanalysis.tests.NavigationTests" />
         </classes>
     </test>
 </suite>

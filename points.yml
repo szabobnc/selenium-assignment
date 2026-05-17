@@ -19,11 +19,9 @@ student:
 # This has no effect on your grade.
 # ----------------------------------------------------------
 ai_usage:
-  used: false
-  tools: ""           # e.g. "Claude, GitHub Copilot"
-  description: ""     # e.g. "Used Claude to generate initial Page Object 
-                       #  classes, then modified them manually. Used Copilot 
-                       #  for autocomplete while writing test methods."
+  used: true
+  tools: "Gemini, GitHub Copilot"           # e.g. "Claude, GitHub Copilot"
+  description: "Used Gemini and GitHub Copilot for assistance with code generation and autocomplete."
                        
 # ----------------------------------------------------------
 # Quality requirements (gatekeepers)
@@ -73,15 +71,15 @@ basic:
     description: "Submit a form (each distinct form counts as one)"
 
   static_page_test:          # 2 pts | once
-    done: false
+    done: true
     description: "Test a static page (verify text content, element presence, etc.)"
 
   multiple_page_test:        # 3 pts | once
-    done: false
+    done: true
     description: "Define an array of URLs or page data, iterate over them and verify something on each page (e.g. check title or a specific element on 5 different pages using a loop)"
 
   complex_xpath:             # 1 pt each | repeatable | max 10
-    count: 1
+    count: 4
     description: "Use a complex XPath expression (e.g. //div[@class='content']//a[contains(@href,'profile')])"
 
   textarea:                  # 1 pt | once
