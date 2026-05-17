@@ -1,19 +1,30 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
+
+group = 'com.stockanalysis'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.seleniumhq.selenium:selenium-java:2.52.0'
-    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'
-    testImplementation('junit:junit:4.12'){
-		exclude group: 'org.hamcrest'
-	}
-	testImplementation 'org.hamcrest:hamcrest-library:1.3'
-    testImplementation "org.slf4j:slf4j-simple:1.7.9"
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
+    
+    // TestNG for assertions, listeners, and dependencies
+    testImplementation 'org.testng:testng:7.9.0'
+    
+    // WebDriverManager to avoid manual driver setup
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
 }
 
 test {
-    testLogging.showStandardStreams = true
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
