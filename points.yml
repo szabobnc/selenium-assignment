@@ -195,12 +195,12 @@ advanced:
     link: "https://www.browserstack.com/guide/take-screenshots-in-selenium"
     
   headless_execution:        # 4 pts | once
-    done: false
+    done: true
     description: "Run tests in headless mode (browser without visible UI)"
     link: "https://www.selenium.dev/documentation/webdriver/browsers/chrome/"
 
   cross_browser_testing:     # 8 pts | once
-    done: false
+    done: true
     description: "Run the same tests on multiple browsers (e.g. Chrome and Firefox) using parameterization"
     link: "https://www.selenium.dev/documentation/webdriver/browsers/"
 

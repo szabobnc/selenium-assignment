@@ -1,6 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="StockAnalysisSuite" verbose="1">
-    <test name="AutomationTests">
+    <test name="ChromeTests">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="com.stockanalysis.tests.AuthTests" />
+            <class name="com.stockanalysis.tests.NavigationTests" />
+        </classes>
+    </test>
+    <test name="FirefoxTests">
+        <parameter name="browser" value="firefox" />
         <classes>
             <class name="com.stockanalysis.tests.AuthTests" />
             <class name="com.stockanalysis.tests.NavigationTests" />

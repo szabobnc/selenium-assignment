@@ -1,24 +1,39 @@
 version: "3.8"
 
 services:
-  # Container 1: The Chrome Browser
   selenium-grid:
-    image: selenium/standalone-chrome:latest
+    image: selenium/hub:latest
     container_name: selenium-grid
     ports:
       - "4444:4444"
-      - "7900:7900" 
+
+  chrome-node:
+    image: selenium/node-chrome:latest
+    depends_on:
+      - selenium-grid
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-grid
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
     shm_size: 2gb
 
-  # Container 2: The Test Runner (Gradle)
+  firefox-node:
+    image: selenium/node-firefox:latest
+    depends_on:
+      - selenium-grid
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-grid
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    shm_size: 2gb
+
   tests:
     image: gradle:latest
     container_name: gradle-tests
     depends_on:
-      - selenium-grid
+      - chrome-node
+      - firefox-node
     volumes:
-      # Maps your local project folder into the container
       - .:/home/gradle/project
     working_dir: /home/gradle/project
-    # The command it runs when it starts
     command: gradle test --info
