@@ -100,7 +100,7 @@ basic:
     description: "Project has at least 4 Java classes"
 
   at_least_6_classes:        # 3 pts | once
-    done: false
+    done: true
     description: "Project has at least 6 Java classes (cumulative with above)"
 
   at_least_8_classes:        # 3 pts | once
@@ -181,7 +181,7 @@ advanced:
     description: "Download one or more files to a folder and verify they were saved"
 
   config_file:               # 6 pts | once
-    done: false
+    done: true
     description: "Store test settings in an external file (e.g. .properties, .yml, or .env) and read them at runtime — things like base URL, username, password, browser type. No hardcoded values in your test code"
 
   javascript_executor:       # 4 pts | once

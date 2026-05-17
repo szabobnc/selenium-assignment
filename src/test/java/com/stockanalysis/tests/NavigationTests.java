@@ -1,5 +1,8 @@
 package com.stockanalysis.tests;
 
+import com.stockanalysis.config.ConfigReader;
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +26,7 @@ public class NavigationTests extends BaseTest {
     @Test(dataProvider = "stockTickers")
     public void shouldLoadIndividualStockPages(String ticker, String expectedCompanyName) {
         // Iterate through the stock tickers, search for each one, click the result, and verify the correct page loads
-        driver.get("https://stockanalysis.com/stocks/" + ticker + "/");
-        
+        driver.get(ConfigReader.getProperty("baseUrl") + "/stocks/" + ticker + "/");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.titleContains(expectedCompanyName));
@@ -39,7 +41,7 @@ public class NavigationTests extends BaseTest {
     // Static page test
     @Test
     public void shouldLoadStaticPageSuccessfully() {
-        driver.get("https://stockanalysis.com");
+        driver.get(ConfigReader.getProperty("baseUrl"));
         
         Assert.assertTrue(driver.getTitle().contains("Stock Analysis"), "Static page title is incorrect.");
         

@@ -1,5 +1,6 @@
 package com.stockanalysis.tests;
 
+import com.stockanalysis.config.ConfigReader;
 import com.stockanalysis.pages.HomePage;
 import com.stockanalysis.pages.LoginPage;
 
@@ -16,12 +17,15 @@ public class AuthTests extends BaseTest {
 
     @Test
     public void invalidLoginShowsErrorMessage() {
-    driver.get("https://stockanalysis.com/login/");
+    driver.get(ConfigReader.getProperty("baseUrl") + "/login/");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     LoginPage loginPage = new LoginPage(driver);
-    loginPage.login("invaliduser@invalid.com", "invalidpassword");
+    loginPage.login(
+    ConfigReader.getProperty("usernameInvalid"), 
+    ConfigReader.getProperty("passwordInvalid")
+);
 
     // Verify error message is displayed
     By errorMessageLoc = By.xpath("//div[text()='Wrong or invalid email or password. Please try again.']");
@@ -33,13 +37,16 @@ public class AuthTests extends BaseTest {
 
     @Test
     public void testSuccessfulLogin() {
-        driver.get("https://stockanalysis.com/login/");
+        driver.get(ConfigReader.getProperty("baseUrl") + "/login/");
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
         // Login with valid credentials
-        loginPage.login("szabomail00@gmail.com", "StrongPassword123!");
+        loginPage.login(
+        ConfigReader.getProperty("usernameCorrect"), 
+        ConfigReader.getProperty("passwordCorrect")
+        );
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
