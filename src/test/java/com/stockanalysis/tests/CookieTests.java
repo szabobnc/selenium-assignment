@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 public class CookieTests extends BaseTest {
     @Test
     public void shouldSuccessfullyAddReadAndDeleteCustomCookie() {
-        // Add a custom cookie to the browser, read it back to verify it was set correctly, and then delete it
+        // Add a custom cookie to the browser, read it back to verify it was set
+        // correctly, and then delete it
         Cookie myCustomCookie = new Cookie("Automation_Test_Cookie", "Grade_5_Student");
         driver.manage().addCookie(myCustomCookie);
 
@@ -18,7 +19,7 @@ public class CookieTests extends BaseTest {
 
         // Delete the cookie and verify it has been removed
         driver.manage().deleteCookieNamed("Automation_Test_Cookie");
-        
+
         // Check that the cookie has been deleted
         Cookie deletedCookie = driver.manage().getCookieNamed("Automation_Test_Cookie");
         Assert.assertNull(deletedCookie, "Cookie was not deleted!");

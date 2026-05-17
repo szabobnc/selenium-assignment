@@ -17,22 +17,20 @@ public class AuthTests extends BaseTest {
 
     @Test
     public void invalidLoginShowsErrorMessage() {
-    driver.get(ConfigReader.getProperty("baseUrl") + "/login/");
+        driver.get(ConfigReader.getProperty("baseUrl") + "/login/");
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    LoginPage loginPage = new LoginPage(driver);
-    loginPage.login(
-    ConfigReader.getProperty("usernameInvalid"), 
-    ConfigReader.getProperty("passwordInvalid")
-);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(
+                ConfigReader.getProperty("usernameInvalid"),
+                ConfigReader.getProperty("passwordInvalid"));
 
-    // Verify error message is displayed
-    By errorMessageLoc = By.xpath("//div[text()='Wrong or invalid email or password. Please try again.']");
-    boolean isErrorMessageVisible =
-    wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessageLoc))
-    .isDisplayed();
-    Assert.assertTrue(isErrorMessageVisible, "Error message is not visible.");
+        // Verify error message is displayed
+        By errorMessageLoc = By.xpath("//div[text()='Wrong or invalid email or password. Please try again.']");
+        boolean isErrorMessageVisible = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessageLoc))
+                .isDisplayed();
+        Assert.assertTrue(isErrorMessageVisible, "Error message is not visible.");
     }
 
     @Test
@@ -44,9 +42,8 @@ public class AuthTests extends BaseTest {
 
         // Login with valid credentials
         loginPage.login(
-        ConfigReader.getProperty("usernameCorrect"), 
-        ConfigReader.getProperty("passwordCorrect")
-        );
+                ConfigReader.getProperty("usernameCorrect"),
+                ConfigReader.getProperty("passwordCorrect"));
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -65,10 +62,10 @@ public class AuthTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Task: Random data (8 pts) - Randomly select a stock ticker from a predefined list and search for it
-        String[] tickers = {"NVDA", "MSFT", "AMD", "MU", "CBRS"};
+        // Randomly select a stock ticker from a predefined list and search for it
+        String[] tickers = { "NVDA", "MSFT", "AMD", "MU", "CBRS" };
         String selectedTicker = tickers[new Random().nextInt(tickers.length)];
-        
+
         System.out.println("Randomly selected stock: " + selectedTicker);
 
         // Search and Hover
@@ -76,19 +73,19 @@ public class AuthTests extends BaseTest {
 
         // Wait for the new page to load (URL contains the ticker in lowercase)
         wait.until(ExpectedConditions.urlContains(selectedTicker.toLowerCase()));
-        Assert.assertTrue(driver.getCurrentUrl().contains(selectedTicker.toLowerCase()), 
+        Assert.assertTrue(driver.getCurrentUrl().contains(selectedTicker.toLowerCase()),
                 "Not the correct stock page loaded!");
 
         // History test
         // Back to the main page
         driver.navigate().back();
         wait.until(ExpectedConditions.urlContains("#"));
-        
+
         // Forward again to the stock page
         driver.navigate().forward();
         wait.until(ExpectedConditions.urlContains(selectedTicker.toLowerCase()));
     }
-     
+
     @Test(dependsOnMethods = "testRandomStockSearchAndHistoryNavigation")
     public void testLogout() {
         HomePage homePage = new HomePage(driver);
@@ -100,6 +97,6 @@ public class AuthTests extends BaseTest {
         boolean isLoginVisible = wait.until(ExpectedConditions.visibilityOfElementLocated(loginButtonLoc))
                 .isDisplayed();
 
-        Assert.assertTrue(isLoginVisible, "A Log In gomb nem jelent meg újra!");
+        Assert.assertTrue(isLoginVisible, "The login button is not visible after logout, logout might have failed.");
     }
 }

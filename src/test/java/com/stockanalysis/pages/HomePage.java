@@ -7,13 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.stockanalysis.config.ConfigReader;
-
-// Task: Page object pattern - Class 2
 public class HomePage extends BasePage {
 
-    // Task: Complex XPath (2/4) - Navigating through nav menu to find the user profile dropdown
-    private final By userProfile = By.xpath("//a[text()='My Account']");
     private final By logoutLink = By.xpath("//button[text()='Log Out']");
     private final By openMenu = By.xpath("//button[@aria-label='Open Menu']");
       
@@ -21,10 +16,8 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    // Task: Logout (2 pts)
     public void logout() {
-        //driver.get(ConfigReader.getProperty("baseUrl"));
-        //wait.until(ExpectedConditions.elementToBeClickable(userProfile)).click();
+        // Try to click the logout link directly, if it fails, try opening the menu first
         try{   
             wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
         } catch(Exception e) {
@@ -33,7 +26,6 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
         }
     }
-
 
     public void closeWelcomeModal() {
         try {
@@ -48,12 +40,10 @@ public class HomePage extends BasePage {
     }
 
     public void searchAndHoverStock(String ticker) {
-        // Find the search input, click it, clear it, and type the ticker (Fill input)
         WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("search-home-page")));
         searchInput.clear();
         searchInput.sendKeys(ticker);
 
-        // Complex XPath
         By resultLocator = By.xpath("//a[contains(@class, 'sres')]//span[text()='" + ticker + "']");
         WebElement resultElement = wait.until(ExpectedConditions.elementToBeClickable(resultLocator));
 

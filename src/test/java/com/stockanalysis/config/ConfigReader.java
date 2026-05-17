@@ -6,7 +6,6 @@ import java.util.Properties;
 
 public class ConfigReader {
     private static Properties properties;
-
     static {
         try {
             String path = "src/test/resources/config.properties";
@@ -19,7 +18,6 @@ public class ConfigReader {
             throw new RuntimeException("Could not read config.properties file.");
         }
     }
-
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
