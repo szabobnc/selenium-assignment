@@ -20,8 +20,8 @@ student:
 # ----------------------------------------------------------
 ai_usage:
   used: true
-  tools: "Gemini, GitHub Copilot"           # e.g. "Claude, GitHub Copilot"
-  description: "Used Gemini and GitHub Copilot for assistance with code generation and autocomplete."
+  tools: "Gemini, GitHub Copilot"
+  description: "Used Copilot for fast code autocomplete. I used Gemini to brainstorm solutions for responsive design issues and TestNG configuration, as well as to generate test data. I also relied on Gemini to help me understand complex Selenium features and best practices for structuring my tests to be more maintainable and readable."
                        
 # ----------------------------------------------------------
 # Quality requirements (gatekeepers)
